@@ -17,7 +17,7 @@ namespace MCPClient
                 Command = "dotnet",
                 Arguments =
                 [
-                    @"C:\Users\shivB\source\repos\MachinelearningClass\MCPServerDotNet\bin\Debug\net8.0\MCPServerDotNet.dll"
+                    @"D:\Users\shard\source\repos\git\quest-AIMLCode\MCPServerDotNet\bin\Debug\net8.0\MCPServerDotNet.dll"
                 ]
             });
             // here to 
