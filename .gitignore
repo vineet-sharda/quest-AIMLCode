@@ -1,6 +1,8 @@
 # .NET build output
+*vs/
 bin/
 obj/
 *.onnx
 vocab.txt
 *.parquet
+*.vsidx
