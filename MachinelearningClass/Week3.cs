@@ -146,6 +146,4 @@ namespace MachinelearningClass
         }
         
     }
-    public class InputText { public string Text { get; set; } }
-    public class Output { public float[] BagOfWords { get; set; } }
 }
