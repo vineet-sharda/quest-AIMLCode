@@ -198,11 +198,12 @@ namespace MachinelearningClass
         }
         public static void Lab7_SimplestMLAutoMlWithHugeData()
         {
+            var path = Path.GetFullPath(@"..\..\..\Data\linear_insurance_100k.csv");
             var mlContext = new MLContext();
             var data = mlContext.Data.LoadFromTextFile<InsuranceData>(
-            path: "C:\\Users\\shivB\\source\\repos\\MachinelearningClass\\MachinelearningClass\\Data\\linear_insurance_100k.csv",   // your CSV file path
-            hasHeader: true,
-            separatorChar: ',');
+                    path: path,   // your CSV file path
+                    hasHeader: true,
+                    separatorChar: ',');
             var splitData = mlContext.Data.TrainTestSplit(data, testFraction: 0.2);
             var trainData = splitData.TrainSet;
             var testData = splitData.TestSet;
@@ -488,7 +489,7 @@ namespace MachinelearningClass
 
 
                 Console.WriteLine("Ener fruit name2");
-                string input2 = Console.ReadLine(); 
+                string input2 = Console.ReadLine();
 
                 var inputResult1 = predictionEngine.Predict(
                 new ModelNLP.FruitData
@@ -656,7 +657,7 @@ namespace MachinelearningClass
         {
             var key = Environment.GetEnvironmentVariable("aikey");
 
-          
+
 
             var embeddingClient = new EmbeddingClient(
                 model: "text-embedding-3-small",
@@ -666,7 +667,7 @@ namespace MachinelearningClass
             string textToBeMatched = "I love cricket and especially batting.";
             var embed = await embeddingClient.GenerateEmbeddingAsync(textToBeMatched);
             var textToBeMatchedVector = embed.Value.ToFloats().ToArray();
-           
+
 
             while (true)
             {
@@ -675,7 +676,7 @@ namespace MachinelearningClass
 
                 string? inputText = Console.ReadLine();
 
-                
+
 
                 var embedinput = await embeddingClient.GenerateEmbeddingAsync(inputText);
                 var inputTextVector = embedinput.Value.ToFloats().ToArray();
@@ -946,7 +947,7 @@ namespace MachinelearningClass
 
             var chat = kernel.GetRequiredService<IChatCompletionService>();
 
-            
+
 
             Console.Write("Enter your message: ");
             string userInput = Console.ReadLine() ?? "";
@@ -973,8 +974,8 @@ namespace MachinelearningClass
 
             var settings = new OpenAIPromptExecutionSettings
             {
-               // FunctionChoiceBehavior = FunctionChoiceBehavior.Auto()
-               FunctionChoiceBehavior =
+                // FunctionChoiceBehavior = FunctionChoiceBehavior.Auto()
+                FunctionChoiceBehavior =
                 FunctionChoiceBehavior.Auto(autoInvoke: false)
             };
 
@@ -986,7 +987,7 @@ namespace MachinelearningClass
             Console.WriteLine();
             Console.ReadLine();
         }
-        public static void  Lab20_1ModelContextProject_Stdio()
+        public static void Lab20_1ModelContextProject_Stdio()
         {
             // check MCPServerSTDIO and MCPClient
             // its a different C# project
@@ -1426,14 +1427,16 @@ ORDER BY Id;";
         public string Answer { get; set; }
         public float[] Embedding { get; set; }
     }
-    public class InputText { 
-        public string Text { get; set; } 
-    }
-    public class Output {
+    public class InputText
+    {
         public string Text { get; set; }
-        public float[] BagOfWords { get; set; } 
     }
-  
+    public class Output
+    {
+        public string Text { get; set; }
+        public float[] BagOfWords { get; set; }
+    }
+
     public sealed class GreetingPlugin
     {
         [KernelFunction("good_morning")]

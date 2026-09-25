@@ -10,15 +10,18 @@ namespace MachinelearningClass
         public static string sqlConnectionString = "Data Source=DESKTOP-ILFSBH1\\SQLEXPRESS01;Initial Catalog=InterviewQuestions;Integrated Security=True;Trust Server Certificate=True";
 
         public static string datapath = "C:\\Users\\shivB\\source\\repos\\MachinelearningClass\\MachinelearningClass\\Data\\";
-         static  void Main(string[] args)
+        static void Main(string[] args)
         {
-            //OtherLabs.Lab29SemanticKernel().Wait();
-            AllLabs.Lab19ToolingusingSemanticKernel().Wait();
-            //AllLabs.Lab21_QdrantRag().Wait();
-            //ChunkingLessons.FixedAndRecursiveChunking();
+            AllLabs.Lab7_SimplestMLAutoMlWithHugeData();
+
+            ////OtherLabs.Lab29SemanticKernel().Wait();
+            //AllLabs.Lab19ToolingusingSemanticKernel().Wait();
+            ////AllLabs.Lab21_QdrantRag().Wait();
+            ////ChunkingLessons.FixedAndRecursiveChunking();
+
             Console.Read();
         }
-        
+
         public static void Clustering()
         {
             var ml = new MLContext();
@@ -37,7 +40,7 @@ namespace MachinelearningClass
 
             Console.WriteLine($"Cluster: {result.PredictedClusterId}");
         }
-    
+
         public static void ReadModel()
         {
             var mlContext = new MLContext();
@@ -69,5 +72,5 @@ namespace MachinelearningClass
 
         }
     }
-    
+
 }

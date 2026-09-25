@@ -19,6 +19,10 @@ namespace MCPClient
                 [
                     @"D:\Users\shard\source\repos\git\quest-AIMLCode\MCPServerDotNet\bin\Debug\net8.0\MCPServerDotNet.dll"
                 ]
+                //Arguments =
+                //[
+                //    @"D:\Users\shard\source\repos\git\quest-AIMLCode\MCPServerHttp\bin\Debug\net8.0\MCPServerHttp.dll"
+                //]
             });
             // here to 
             await using var mcpClient = await McpClient.CreateAsync(transport);
