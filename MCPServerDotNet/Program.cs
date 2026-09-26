@@ -3,7 +3,6 @@ using Microsoft.Extensions.Hosting; // Lets you create and run a host applicatio
 using Microsoft.Extensions.Logging; // Lets you log messages
 using ModelContextProtocol.Server; // Provides MCPServer features
 using System.ComponentModel; // Lets you add descriptions to method parameters
-using Microsoft.AspNetCore.Builder;
 namespace MCPServerDotNet
 {
     internal class Program

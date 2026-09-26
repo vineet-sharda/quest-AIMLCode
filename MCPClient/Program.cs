@@ -11,18 +11,13 @@ namespace MCPClient
     {
         static async Task Main(string[] args)
         {
+            var path = Path.GetFullPath(@"..\..\..\..\MCPServerHttp\bin\Debug\net8.0\MCPServerHttp.dll");
+            path = Path.GetFullPath(@"..\..\..\..\MCPServerDotNet\bin\Debug\net8.0\MCPServerDotNet.dll");
             var transport = new StdioClientTransport(new StdioClientTransportOptions
             {
                 Name = "Greetingtools",
                 Command = "dotnet",
-                Arguments =
-                [
-                    @"D:\Users\shard\source\repos\git\quest-AIMLCode\MCPServerDotNet\bin\Debug\net8.0\MCPServerDotNet.dll"
-                ]
-                //Arguments =
-                //[
-                //    @"D:\Users\shard\source\repos\git\quest-AIMLCode\MCPServerHttp\bin\Debug\net8.0\MCPServerHttp.dll"
-                //]
+                Arguments = [path]
             });
             // here to 
             await using var mcpClient = await McpClient.CreateAsync(transport);
@@ -33,8 +28,16 @@ namespace MCPClient
             {
                 Console.WriteLine($"- {tool.Name}");
             }
-            
+
             var key = Environment.GetEnvironmentVariable("aikey");
+
+            if (string.IsNullOrWhiteSpace(key))
+            {
+                throw new InvalidOperationException("Missing environment variable 'aikey'.\r\n"
+                    + "\r\n- Go to https://platform.openai.com/account/api-keys to create one."
+                    + "\r\n - Paste it as the value of the 'aikey' environment variable."
+                    );
+            }
 
             IChatClient client = new ChatClient("gpt-4o-mini", key)
             .AsIChatClient() // Bridges OpenAI.Chat to IChatClient
@@ -59,11 +62,11 @@ namespace MCPClient
                 // "Select and call the single most appropriate greeting tool for this time of day." +
                 // "As per its evening , morning , night call the method names"  ;
                 var prompt = $"The person's name is {name}.  " +
-                 "Select and call the single most appropriate greeting tool for this time of day." +
-                 "As per the current date and time if its evening , morning , night call the methods" +
-                 "of the tool accordingly" +
-                 "pass the person name to the method and invoke it";
-              
+                     "Select and call the single most appropriate greeting tool for this time of day." +
+                     "As per the current date and time if its evening , morning , night call the methods" +
+                     "of the tool accordingly" +
+                     "pass the person name to the method and invoke it";
+
                 var response = await client.GetResponseAsync(
                  prompt,
                    new ChatOptions
